@@ -30,4 +30,6 @@ public class Operacje_na_obiektach {
         return distance;
     }
 
+
+
 }
