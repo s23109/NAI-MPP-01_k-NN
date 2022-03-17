@@ -13,6 +13,7 @@ public class Main {
         try {
             BufferedReader bufferedReader = new BufferedReader(new FileReader("Dane+Polecenie/iris.data.txt"));
             String line = null;
+            int no_of_elements = 0;
             while ((line = bufferedReader.readLine())!=null){
                 //System.out.println(line);
                 //Wstępna ,,obróbka danych'' ;)
