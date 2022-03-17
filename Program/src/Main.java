@@ -14,10 +14,10 @@ public class Main {
 
         Map<Integer,Element> zbior_treningowy;
         Map<Integer,Element_testowy> zbior_testowy;
-
+        zbior_treningowy=new LinkedHashMap<>();
         BufferedReader bufferedReader = null;
         try {
-            zbior_treningowy=new LinkedHashMap<>();
+
             bufferedReader = new BufferedReader(new FileReader("Dane+Polecenie/iris.data.txt"));
             String line ;
             String[] agrumenty ;
@@ -47,9 +47,9 @@ public class Main {
 
         if (!manual_input){
             //jak auto input, to
-
+            zbior_testowy = new LinkedHashMap<>();
             try {
-                zbior_testowy = new LinkedHashMap<>();
+
                 bufferedReader = new BufferedReader(new FileReader("Dane+Polecenie/iris.test.data.txt"));
                 String line ;
                 String []argumenty ;
@@ -72,10 +72,17 @@ public class Main {
             }
 
 
-            //część obliczeniowa
+            for (Map.Entry mapElement : zbior_testowy.entrySet()) {
+                //oblicz odległość od każdego
 
+                //get key : (String) mapElement.getKey();
+                //get value : (int)mapElement.getValue();
 
+                //zobacz który jest najbliższy
 
+                //sprawdź czy ,,strzał był poprawny'' i dodaj dane do ,,element testowy''
+
+            }
 
         }
         else {
