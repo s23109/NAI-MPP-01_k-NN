@@ -2,6 +2,9 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 public class Main {
@@ -17,20 +20,23 @@ public class Main {
         BufferedReader bufferedReader = null;
         try {
             bufferedReader = new BufferedReader(new FileReader("Dane+Polecenie/iris.data.txt"));
-            String line = null;
+            String line ;
+            String[] agrumenty ;
             int no_of_elements = 0;
 
 
             while ((line = bufferedReader.readLine())!=null){
                 //System.out.println(line);
                 //Wstępna ,,obróbka danych'' ;)
+                agrumenty=line.split(",");
+                List<String> temp = List.of(agrumenty);
+                temp.remove(temp.size()-1);
+                zbior_treningowy.put(no_of_elements,new Element(agrumenty[agrumenty.length-1],temp));
                 no_of_elements++;
             }
 
 
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         finally {
@@ -40,6 +46,9 @@ public class Main {
                 e.printStackTrace();
             }
         }
+
+
+
 
 
     }
