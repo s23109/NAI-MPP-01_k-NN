@@ -11,6 +11,7 @@ public class Main {
 
     public static void main(String[] args) {
 
+       final boolean manual_input = false ;
 
         System.out.println("Start programu");
 
@@ -45,6 +46,47 @@ public class Main {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        }
+
+
+        if (!manual_input){
+            //jak auto input, to
+
+            try {
+                bufferedReader = new BufferedReader(new FileReader("Dane+Polecenie/iris.test.data.txt"));
+                String line ;
+                String []argumenty ;
+                int pomo = 0;
+                while ((line = bufferedReader.readLine())!=null){
+
+                    argumenty = line.split(",");
+                    List<String> temp = List.of(argumenty);
+                    temp.remove(temp.size()-1);
+                    zbior_testowy.put(pomo, new Element_testowy(argumenty[argumenty.length-1],temp));
+                    pomo++;
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            finally {
+                try {
+                    bufferedReader.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+
+            //część obliczeniowa
+
+
+
+
+        }
+        else {
+            // manual input
+            // Placeholder
         }
 
 

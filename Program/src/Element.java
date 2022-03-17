@@ -27,4 +27,7 @@ List<String> coordinates;
         return distance;
     }
 
+    public boolean czy_ta_sama_nazwa (String testowana){
+        return name_of_object.equals(testowana);
+    }
 }
