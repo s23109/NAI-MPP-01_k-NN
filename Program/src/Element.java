@@ -13,19 +13,7 @@ List<String> coordinates;
         this.coordinates = coordinates;
     }
 
-    public double distance_euklides (List<String> coordinates_of_other_object) throws Exception {
-        //Ta metoda zwraca odległość która nie jest spierwiastkowana (w celu optymalizacji)
-        if (this.coordinates.size() != coordinates_of_other_object.size()){
-            throw new Exception("Porównywanie wektorów o innych rozmiarach niemożliwe");
-        }
-        double distance = 0 ;
 
-        for (int i = 0; i < coordinates.size(); i++) {
-            distance+= Math.pow((Double.parseDouble(coordinates.get(i))- Double.parseDouble(coordinates_of_other_object.get(i))),2);
-        }
-
-        return distance;
-    }
 
     public boolean czy_ta_sama_nazwa (String testowana){
         return name_of_object.equals(testowana);
