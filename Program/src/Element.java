@@ -15,7 +15,9 @@ List<Double> coordinates;
 
 
 
-    public boolean czy_ta_sama_nazwa (String testowana){
-        return name_of_object.equals(testowana);
+    public boolean czy_ta_sama_nazwa (Element porownywany){
+        return this.name_of_object.equals(porownywany.name_of_object);
     }
+
+
 }

@@ -30,6 +30,12 @@ public class Operacje_na_obiektach {
         return distance;
     }
 
+    public synchronized static Element utworz_obiekt (String input){
+     String[] temp = input.split(",");
+     List <? extends Object> lista = List.of(temp).subList(0,temp.length-2);
+     return new Element(temp[temp.length-1],(List<Double>)lista );
+    }
+
 
 
 }
