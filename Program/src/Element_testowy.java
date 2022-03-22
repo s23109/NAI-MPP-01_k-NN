@@ -1,10 +1,12 @@
 import java.util.List;
 import java.util.Map;
 
-public class Element_testowy extends Element{
+public class Element_testowy{
 
-    public Element_testowy(String name_of_object, List<Double> coordinates) {
-        super(name_of_object, coordinates);
+    public Element element;
+
+    public Element_testowy(Element element) {
+       this.element=element;
     }
 
     boolean czy_trafiony;
@@ -27,6 +29,7 @@ public class Element_testowy extends Element{
         this.jak_strzelano = jak_strzelano;
     }
 
-
-
+    public Element getElement() {
+        return element;
+    }
 }

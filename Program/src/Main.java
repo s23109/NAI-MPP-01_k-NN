@@ -1,5 +1,4 @@
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
@@ -20,7 +19,6 @@ public class Main {
 
             bufferedReader = new BufferedReader(new FileReader("Dane+Polecenie/iris.data.txt"));
             String line ;
-            String[] agrumenty ;
             int no_of_elements = 0;
 
 
@@ -51,10 +49,9 @@ public class Main {
 
                 bufferedReader = new BufferedReader(new FileReader("Dane+Polecenie/iris.test.data.txt"));
                 String line ;
-                String []argumenty ;
                 int pomo = 0;
                 while ((line = bufferedReader.readLine())!=null){
-                    zbior_testowy.put(pomo, (Element_testowy) Operacje_na_obiektach.utworz_obiekt(line));
+                    zbior_testowy.put(pomo, new Element_testowy(Operacje_na_obiektach.utworz_obiekt(line)) );
                     pomo++;
                 }
 
@@ -70,8 +67,27 @@ public class Main {
             }
 
 
-            for (Map.Entry mapElement : zbior_testowy.entrySet()) {
+            for (Map.Entry<Integer, Element_testowy> testSet : zbior_testowy.entrySet()) {
                 //oblicz odległość od każdego
+                Map <Integer,Double> distancemap = new LinkedHashMap<>();
+
+                for (Map.Entry<Integer, Element> treningset: zbior_treningowy.entrySet()
+                     ) {
+
+                    try {
+                        distancemap.put(treningset.getKey(),Operacje_na_obiektach.distance_euklides(treningset.getValue().getCoordinates(), testSet.getValue().getElement().getCoordinates()));
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                List <Map.Entry<Integer,Double>> sorted = new ArrayList<>(distancemap.entrySet());
+                sorted.sort(Map.Entry.comparingByValue());
+
+                for (int i = 0; i < 3; i++) {
+                    System.out.println(sorted.get(i));
+                }
+
 
                 //get key : (String) mapElement.getKey();
                 //get value : (int)mapElement.getValue();

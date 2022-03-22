@@ -19,5 +19,7 @@ List<Double> coordinates;
         return this.name_of_object.equals(porownywany.name_of_object);
     }
 
-
+    public List<Double> getCoordinates() {
+        return coordinates;
+    }
 }
