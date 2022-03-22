@@ -28,7 +28,8 @@ public class Main {
                 //System.out.println(line);
                 //Wstępna ,,obróbka danych'' ;)
                 agrumenty=line.split(",");
-                zbior_treningowy.put(no_of_elements,new Element(agrumenty[agrumenty.length-1], List.of(agrumenty).subList(0,agrumenty.length-2)));
+                List <? extends Object> temp = List.of(agrumenty).subList(0,agrumenty.length-2);
+                zbior_treningowy.put(no_of_elements,new Element(agrumenty[agrumenty.length-1], (List<Double>) temp ));
                 no_of_elements++;
             }
 
@@ -56,7 +57,8 @@ public class Main {
                 int pomo = 0;
                 while ((line = bufferedReader.readLine())!=null){
                     argumenty = line.split(",");
-                    zbior_testowy.put(pomo, new Element_testowy(argumenty[argumenty.length-1], List.of(argumenty).subList(0,argumenty.length-2)));
+                    List <? extends Object> temp = List.of(argumenty).subList(0,argumenty.length-2);
+                    zbior_testowy.put(pomo, new Element_testowy(argumenty[argumenty.length-1], (List<Double>)temp ));
                     pomo++;
                 }
 
