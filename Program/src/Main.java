@@ -12,7 +12,7 @@ public class Main {
         System.out.println("Start programu");
 
         Map<Integer,Element> zbior_treningowy;
-        Map<Integer,Element_testowy> zbior_testowy;
+        Map<Integer,Element> zbior_testowy;
         zbior_treningowy=new LinkedHashMap<>();
         BufferedReader bufferedReader = null;
         try {
@@ -51,7 +51,7 @@ public class Main {
                 String line ;
                 int pomo = 0;
                 while ((line = bufferedReader.readLine())!=null){
-                    zbior_testowy.put(pomo, new Element_testowy(Operacje_na_obiektach.utworz_obiekt(line)) );
+                    zbior_testowy.put(pomo, Operacje_na_obiektach.utworz_obiekt(line) );
                     pomo++;
                 }
 
@@ -67,26 +67,26 @@ public class Main {
             }
 
 
-            for (Map.Entry<Integer, Element_testowy> testSet : zbior_testowy.entrySet()) {
+            for (Map.Entry<Integer, Element> testSet : zbior_testowy.entrySet()) {
                 //oblicz odległość od każdego
-                Map <Integer,Double> distancemap = new LinkedHashMap<>();
+                List<Object_info> distances = new ArrayList<>();
 
                 for (Map.Entry<Integer, Element> treningset: zbior_treningowy.entrySet()
                      ) {
 
                     try {
-                        distancemap.put(treningset.getKey(),Operacje_na_obiektach.distance_euklides(treningset.getValue().getCoordinates(), testSet.getValue().getElement().getCoordinates()));
-                    } catch (Exception e) {
+                    //    distances.add(new Object_info(treningset.getKey(),treningset.getValue().name_of_object , Operacje_na_obiektach.distance_euklides(treningset.getValue().getCoordinates(), testSet.getValue().getCoordinates()) ));
+                          } catch (Exception e) {
                         e.printStackTrace();
                     }
                 }
 
-                List <Map.Entry<Integer,Double>> sorted = new ArrayList<>(distancemap.entrySet());
-                sorted.sort(Map.Entry.comparingByValue());
 
-                for (int i = 0; i < 3; i++) {
-                    System.out.println(sorted.get(i));
-                }
+
+
+//                for (int i = 0; i < 3; i++) {
+//                    System.out.println(sorted.get(i));
+//                }
 
 
                 //get key : (String) mapElement.getKey();

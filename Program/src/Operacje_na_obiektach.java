@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Operacje_na_obiektach {
@@ -30,11 +32,16 @@ public class Operacje_na_obiektach {
         return distance;
     }
 
-    public synchronized static Element utworz_obiekt (String input){
+    public static Element utworz_obiekt (String input){
      String[] temp = input.split(",");
-     List <? extends Object> lista = List.of(temp).subList(0,temp.length-2);
-     return new Element(temp[temp.length-1],(List<Double>)lista );
+     List<Double> coordinates = new ArrayList<>();
+     for (String x: temp){
+         try{coordinates.add(Double.parseDouble(x));}catch (Exception e){}
+     }
+     return new Element(temp[temp.length-1], coordinates);
     }
+
+
 
 
 
