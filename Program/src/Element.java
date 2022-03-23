@@ -11,10 +11,6 @@ List<Double> coordinates;
         this.coordinates = coordinates;
     }
 
-    public boolean czy_ta_sama_nazwa (Element porownywany){
-        return this.name_of_object.equals(porownywany.name_of_object);
-    }
-
     public List<Double> getCoordinates() {
         return coordinates;
     }
