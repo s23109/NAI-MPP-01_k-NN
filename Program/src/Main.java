@@ -2,6 +2,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Main {
 
@@ -10,6 +11,8 @@ public class Main {
        final boolean manual_input = false ;
 
         System.out.println("Start programu");
+
+        final Integer k = 25 ;
 
         Map<Integer,Element> zbior_treningowy;
         Map<Integer,Element> zbior_testowy;
@@ -75,26 +78,55 @@ public class Main {
                      ) {
 
                     try {
-                    //    distances.add(new Object_info(treningset.getKey(),treningset.getValue().name_of_object , Operacje_na_obiektach.distance_euklides(treningset.getValue().getCoordinates(), testSet.getValue().getCoordinates()) ));
+                       distances.add(new Object_info(treningset.getKey(),treningset.getValue().name_of_object , Operacje_na_obiektach.distance_euklides(treningset.getValue().getCoordinates(), testSet.getValue().getCoordinates()) ));
                           } catch (Exception e) {
                         e.printStackTrace();
                     }
                 }
 
+                //działa ;)
+                List <Object_info> distances_sorted = distances.stream().sorted(Comparator.naturalOrder()).collect(Collectors.toList());
 
-
-
-//                for (int i = 0; i < 3; i++) {
-//                    System.out.println(sorted.get(i));
+//                for (Object_info obj : distances_sorted
+//                     ) {
+//                    System.out.println(obj.distance + " " + obj.id);
 //                }
+
 
 
                 //get key : (String) mapElement.getKey();
                 //get value : (int)mapElement.getValue();
 
                 //zobacz który jest najbliższy
+                ArrayList<String> closest = new ArrayList<>();
 
-                //sprawdź czy ,,strzał był poprawny'' i dodaj dane do ,,element testowy''
+
+                for (int i = 0; i < k; i++) {
+                    closest.add(distances_sorted.get(i).name);
+                }
+
+                Map <String, Integer>  nazwa_ilosc = new LinkedHashMap<>();
+                String guess = closest.get(0);
+
+                for (String ele: closest
+                     ) {
+                    nazwa_ilosc.put(ele,Collections.frequency(closest,ele));
+                    if (nazwa_ilosc.get(guess) < nazwa_ilosc.get(ele)) {
+                        guess = ele;
+                    }
+
+                }
+                //jest mapa typ - ilość najbliższych
+
+
+                String answer = testSet.getValue().name_of_object;
+
+                System.out.print("ID: " + testSet.getKey() +
+                        " Zgadywany: |" + guess  + "| Dokładność:" + nazwa_ilosc.get(guess)*100/k + "%");
+
+
+                //sprawdź czy ,,strzał był poprawny''
+                System.out.print("| Poprawny : " + testSet.getValue().name_of_object + "\n");
 
             }
 
@@ -102,6 +134,8 @@ public class Main {
         else {
             // manual input
             // Placeholder
+            
+
         }
 
 
